@@ -9,7 +9,6 @@ TOKEN = '8702951795:AAFD1rpDI1SYOIXfZ_z1JSBp-_FjrG4tB9c'
 WEB_APP_URL = 'https://iqtisodchilar.uz'
 
 bot = telebot.TeleBot(TOKEN, threaded=False)
-(threaded=False
 app = Flask(__name__)
 
 # ==========================================
