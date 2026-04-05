@@ -42,14 +42,19 @@ def about_bot(message):
     bot.send_message(message.chat.id, "<b>🏛 TDTU Iqtisodchilar Platformasi</b>\n🚀 <b>Versiya:</b> 6.0 (Render Server - 24/7)", parse_mode="HTML")
 
 # ==========================================
+# ==========================================
 # SERVER VA WEBHOOK (UXLAMAYDIGAN YURAK)
 # ==========================================
 @app.route('/' + TOKEN, methods=['POST'])
 def receive_update():
-    json_string = request.stream.read().decode('utf-8')
-    update = telebot.types.Update.de_json(json_string)
-    bot.process_new_updates([update])
-    return "OK", 200
+    try:
+        json_string = request.get_data().decode('utf-8')
+        update = telebot.types.Update.de_json(json_string)
+        bot.process_new_updates([update])
+        return "OK", 200
+    except Exception as e:
+        print("XATOLIK:", e)
+        return "Error", 500
 
 @app.route('/')
 def index():
